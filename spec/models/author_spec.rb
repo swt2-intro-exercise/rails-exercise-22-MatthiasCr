@@ -28,4 +28,14 @@ describe "Author", type: :model do
     # Then
     expect(author.name).to eq(full_name)
   end
+
+  it "should not validate without last name" do
+    # Given
+    first_name = "Alan"
+    homepage = "http://wikipedia.org/Alan_Turing"
+    author = Author.new(:first_name => first_name, :homepage => homepage)
+
+    # Then
+    expect(author).to_not be_valid
+  end
 end

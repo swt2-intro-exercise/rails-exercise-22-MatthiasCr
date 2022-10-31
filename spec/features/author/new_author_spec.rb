@@ -16,12 +16,16 @@ require 'rails_helper'
 
    it "should save a new author in the database on submit" do
     # Given
+    first_name = 'Alan'
     last_name = 'Turing'
-    author = Author.new(:last_name => last_name)
+    homepage = 'http://wikipedia.org/Alan_Turing'
+    author = Author.new(:first_name => first_name, :last_name => last_name, :homepage => homepage)
 
     # When
     visit new_author_path
+    page.fill_in('author[first_name]', with: first_name)
     page.fill_in('author[last_name]', with: last_name)
+    page.fill_in('author[homepage]', with: homepage)
     find('input[type="submit"]').click
 
     # Then

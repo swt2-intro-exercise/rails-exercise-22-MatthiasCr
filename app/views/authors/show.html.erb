@@ -1,6 +1,6 @@
-<h1><%= @author.first_name %> <%= @author.last_name %></h1>
+<h1><%= @author.name%></h1>
 
 <p>
     <strong>Homepage:</strong>
-    <%= @author.homepage %>
+    <%= link_to nil, @author.homepage %>
 </p>

@@ -20,7 +20,7 @@ require 'rails_helper'
       expect(page).to have_text("xD")
     end
 
-    it "authour names should link to their page" do
+    it "author names should link to their page" do
       # Given
       @author = FactoryBot.create(:author)
       
@@ -29,6 +29,19 @@ require 'rails_helper'
       
       # Then
       expect(page).to have_link 'Alan Turing', href: author_path(@author)
+    end
+
+    it "authors should be able to be deleted" do
+      # Given
+      @author = FactoryBot.create(:author)
+      previous_count = Author.count
+
+      # When
+      visit authors_path
+      click_link("Delete")
+      
+      # Then
+      expect(Author.count).to  eq(previous_count - 1)
     end
 
     it "a link to new_author_path should exist" do

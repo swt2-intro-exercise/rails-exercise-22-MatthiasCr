@@ -31,4 +31,20 @@ require 'rails_helper'
     # Then
     expect(Author.last).to eq(author)
    end
+
+   it "should show validation error messages" do
+    # Given
+    first_name = 'Alan'
+    last_name = 'T'
+    author = Author.new(:first_name => first_name, :last_name => last_name)
+
+    # When
+    visit new_author_path
+    page.fill_in('author[first_name]', with: first_name)
+    page.fill_in('author[last_name]', with: last_name)
+    find('input[type="submit"]').click
+
+    # Then
+    expect(page).to have_text("error")
+   end
  end

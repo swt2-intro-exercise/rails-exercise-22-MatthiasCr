@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Author", type: :model do
+RSpec.describe Author, type: :model do
   it "should have a first name, last name and a homepage" do
     # Given
     first_name = "Alan"
@@ -37,5 +37,10 @@ describe "Author", type: :model do
 
     # Then
     expect(author).to_not be_valid
+  end
+
+  it "has an papers list" do
+    author = Author.create
+    expect(author.papers.length).to eq 0
   end
 end

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
- describe "Paper", type: :model do
+ RSpec.describe Paper, type: :model do
+
   it "should not validate without title" do
     # Given
     venue = "Mind 49: 433-460"
@@ -42,4 +43,8 @@ require 'rails_helper'
     expect(paper).to_not be_valid
   end
 
+  it "has an authors list" do
+    paper = Paper.create
+    expect(paper.authors.length).to eq 0
+  end
  end

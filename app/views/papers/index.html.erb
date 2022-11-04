@@ -1,14 +1,21 @@
-<p style="color: green"><%= notice %></p>
+<h1>All Papers</h1>
 
-<h1>Papers</h1>
-
-<div id="papers">
+<table>
+  <tr>
+    <th>Title</th>
+    <th>year</th>
+    <th colespan="2"></th>
+    </tr>
+ 
   <% @papers.each do |paper| %>
-    <%= render paper %>
-    <p>
-      <%= link_to "Show this paper", paper %>
-    </p>
+    <tr>
+      <td><%= link_to paper.title, paper_path(paper) %></td>
+      <td><%= paper.year %></td>
+      <td><%= link_to 'Edit', edit_paper_path(paper) %></td>
+      <td><%= link_to 'Delete', paper_path(paper), 
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+    </tr>
   <% end %>
-</div>
-
-<%= link_to "New paper", new_paper_path %>
+</table>
+<br>
+<%= link_to 'New', new_paper_path%>

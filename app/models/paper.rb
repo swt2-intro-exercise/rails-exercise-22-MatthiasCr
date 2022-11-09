@@ -4,6 +4,8 @@ class Paper < ApplicationRecord
 
   has_and_belongs_to_many :authors
 
+  scope :published_in, ->(year) { where("year = ?", year)}
+
   def ==(o)
     o.class == self.class &&
     o.title == self.title &&
